@@ -23,9 +23,9 @@ const Navigation = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center mr-3">
-                <span className="text-primary-foreground font-bold text-sm">PD</span>
+                <span className="text-primary-foreground font-bold text-sm">365</span>
               </div>
-              <span className="text-xl font-bold text-foreground">PharmaDistrib</span>
+              <span className="text-xl font-bold text-foreground">365biopharma</span>
             </Link>
           </div>
 
