@@ -59,7 +59,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email Addresses",
-      details: ["info@365biopharma.com", "sales@365biopharma.com", "support@365biopharma.com"],
+      details: ["info@pharmadistrib.com", "sales@pharmadistrib.com", "support@pharmadistrib.com"],
       badge: "Quick Response"
     },
     {
@@ -76,28 +76,28 @@ const Contact = () => {
       country: "USA",
       address: "123 Pharma Boulevard",
       phone: "+1 (555) 123-4567",
-      email: "ny@365biopharma.com"
+      email: "ny@pharmadistrib.com"
     },
     {
       city: "London",
       country: "UK",
       address: "45 Healthcare Street",
       phone: "+44 20 7123 4567",
-      email: "london@365biopharma.com"
+      email: "london@pharmadistrib.com"
     },
     {
       city: "Singapore",
       country: "Singapore",
       address: "88 Medical Center Road",
       phone: "+65 6123 4567",
-      email: "singapore@365biopharma.com"
+      email: "singapore@pharmadistrib.com"
     },
     {
       city: "Sydney",
       country: "Australia",
       address: "12 Pharmaceutical Plaza",
       phone: "+61 2 1234 5678",
-      email: "sydney@365biopharma.com"
+      email: "sydney@pharmadistrib.com"
     }
   ];
 
@@ -336,7 +336,7 @@ const Contact = () => {
             <span className="text-white/60">|</span>
             <div className="flex items-center text-white">
               <Mail className="h-6 w-6 mr-3" />
-              <span className="text-xl font-semibold">emergency@365biopharma.com</span>
+              <span className="text-xl font-semibold">emergency@pharmadistrib.com</span>
             </div>
           </div>
         </div>

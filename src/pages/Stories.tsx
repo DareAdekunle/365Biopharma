@@ -7,7 +7,7 @@ import newsImage from "@/assets/news-stories.jpg";
 
 const Stories = () => {
   const featuredStory = {
-    title: "365biopharma Expands Cold Chain Network Across Asia-Pacific",
+    title: "PharmaDistrib Expands Cold Chain Network Across Asia-Pacific",
     excerpt: "Our new state-of-the-art cold storage facilities in Singapore, Tokyo, and Sydney ensure seamless vaccine distribution across the Asia-Pacific region, supporting global health initiatives.",
     date: "2024-01-15",
     author: "Dr. Sarah Chen",
@@ -19,7 +19,7 @@ const Stories = () => {
   const stories = [
     {
       title: "Partnership with WHO for Global Vaccine Distribution",
-      excerpt: "365biopharma joins World Health Organization's initiative to enhance vaccine accessibility in developing nations.",
+      excerpt: "PharmaDistrib joins World Health Organization's initiative to enhance vaccine accessibility in developing nations.",
       date: "2024-01-10",
       author: "Michael Roberts",
       category: "Partnership",
@@ -43,7 +43,7 @@ const Stories = () => {
     },
     {
       title: "Sustainability Initiative: Carbon-Neutral Delivery Network",
-      excerpt: "365biopharma commits to achieving carbon neutrality in our delivery network by 2025 through electric vehicles and renewable energy.",
+      excerpt: "PharmaDistrib commits to achieving carbon neutrality in our delivery network by 2025 through electric vehicles and renewable energy.",
       date: "2024-01-03",
       author: "Lisa Park",
       category: "Sustainability",
@@ -59,7 +59,7 @@ const Stories = () => {
     },
     {
       title: "Industry Recognition: Excellence in Pharmaceutical Logistics Award",
-      excerpt: "365biopharma receives prestigious industry award for outstanding contribution to pharmaceutical supply chain innovation.",
+      excerpt: "PharmaDistrib receives prestigious industry award for outstanding contribution to pharmaceutical supply chain innovation.",
       date: "2023-12-25",
       author: "Anna Rodriguez",
       category: "Award",
@@ -97,7 +97,7 @@ const Stories = () => {
               Stories & News
             </h1>
             <p className="text-xl text-white/90 mb-8">
-              Stay updated with the latest developments, partnerships, and innovations from 365biopharma as we continue to advance pharmaceutical distribution worldwide.
+              Stay updated with the latest developments, partnerships, and innovations from PharmaDistrib as we continue to advance pharmaceutical distribution worldwide.
             </p>
           </div>
         </div>
@@ -233,7 +233,7 @@ const Stories = () => {
             Stay Updated
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Subscribe to our newsletter and never miss important updates from 365biopharma.
+            Subscribe to our newsletter and never miss important updates from PharmaDistrib.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
