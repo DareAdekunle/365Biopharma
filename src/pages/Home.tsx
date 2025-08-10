@@ -95,7 +95,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Why Choose PharmaDistrib
+              Why Choose 365biopharma
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               We combine cutting-edge technology with decades of expertise to deliver pharmaceutical solutions you can trust.
@@ -129,7 +129,7 @@ const Home = () => {
                 Leading Pharmaceutical Distribution Since 2003
               </h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                PharmaDistrib has been at the forefront of pharmaceutical distribution, ensuring that life-saving medications reach healthcare providers and patients worldwide. Our commitment to quality, safety, and reliability has made us a trusted partner in the healthcare ecosystem.
+                365biopharma has been at the forefront of pharmaceutical distribution, ensuring that life-saving medications reach healthcare providers and patients worldwide. Our commitment to quality, safety, and reliability has made us a trusted partner in the healthcare ecosystem.
               </p>
               <div className="flex items-center space-x-6 mb-8">
                 <div className="flex items-center">
@@ -166,7 +166,7 @@ const Home = () => {
             Ready to Partner with Us?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of healthcare providers who trust PharmaDistrib for their pharmaceutical distribution needs.
+            Join thousands of healthcare providers who trust 365biopharma for their pharmaceutical distribution needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="px-8 py-3">
