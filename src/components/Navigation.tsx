@@ -25,7 +25,10 @@ const Navigation = () => {
               <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center mr-3">
                 <span className="text-primary-foreground font-bold text-sm">365</span>
               </div>
-              <span className="text-xl font-bold text-foreground">365biopharma</span>
+              <div className="flex flex-col">
+                <span className="text-lg font-bold text-foreground leading-tight">vitalEssentials</span>
+                <span className="text-xs text-muted-foreground leading-tight">by 365biopharma</span>
+              </div>
             </Link>
           </div>
 

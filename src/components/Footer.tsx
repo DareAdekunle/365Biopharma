@@ -12,7 +12,10 @@ const Footer = () => {
               <div className="h-8 w-8 bg-white rounded-lg flex items-center justify-center mr-3">
                 <span className="text-trust-blue font-bold text-sm">365</span>
               </div>
-              <span className="text-xl font-bold">365biopharma</span>
+              <div className="flex flex-col">
+                <span className="text-lg font-bold leading-tight">vitalEssentials</span>
+                <span className="text-xs text-white/70 leading-tight">by 365biopharma</span>
+              </div>
             </div>
             <p className="text-white/80 mb-4 max-w-md">
               Leading pharmaceutical distribution company committed to delivering quality healthcare solutions worldwide. Trusted by healthcare professionals for over two decades.
@@ -66,7 +69,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center text-sm text-white/80">
                 <Mail className="h-4 w-4 mr-2" />
-                <span>info@365biopharma.com</span>
+                <span>info@vitalessentials.com</span>
               </div>
             </div>
           </div>
@@ -74,7 +77,7 @@ const Footer = () => {
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center">
           <p className="text-white/60 text-sm">
-            © 2024 365biopharma. All rights reserved. | Privacy Policy | Terms of Service
+            © 2024 vitalEssentials by 365biopharma. All rights reserved. | Privacy Policy | Terms of Service
           </p>
         </div>
       </div>

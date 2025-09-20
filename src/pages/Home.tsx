@@ -8,31 +8,31 @@ const Home = () => {
   const features = [
     {
       icon: Shield,
-      title: "Quality Assurance",
-      description: "FDA-approved facilities with rigorous quality control processes ensuring pharmaceutical safety."
-    },
-    {
-      icon: Globe,
-      title: "Global Reach",
-      description: "Comprehensive distribution network spanning 50+ countries with reliable supply chain management."
-    },
-    {
-      icon: Clock,
-      title: "Fast Delivery",
-      description: "Express logistics with temperature-controlled transportation for time-sensitive medications."
+      title: "NSF GMP Certified",
+      description: "NSF/ANSI 455-2 Dietary Supplements certified facilities ensuring the highest quality standards."
     },
     {
       icon: Award,
-      title: "Industry Leader",
-      description: "Over 20 years of excellence in pharmaceutical distribution with proven track record."
+      title: "Trusted Quality",
+      description: "Over 50 years of providing quality products beneficial for your family's health and wellness."
+    },
+    {
+      icon: Globe,
+      title: "Premium Formulas",
+      description: "Innovative formulations that support your body's needs with cutting-edge nutrition science."
+    },
+    {
+      icon: Users,
+      title: "Health Priority",
+      description: "Your health is our priority - promoting well-being through trusted nutritional solutions."
     }
   ];
 
   const stats = [
-    { number: "50+", label: "Countries Served" },
-    { number: "10K+", label: "Healthcare Partners" },
-    { number: "1M+", label: "Patients Reached" },
-    { number: "99.9%", label: "Delivery Success" }
+    { number: "50+", label: "Years of Excellence" },
+    { number: "NSF", label: "GMP Certified" },
+    { number: "100%", label: "Quality Tested" },
+    { number: "1M+", label: "Customers Served" }
   ];
 
   return (
@@ -51,11 +51,11 @@ const Home = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Delivering Health.
-              <span className="block text-medical-accent">Building Trust.</span>
+              Nourish Today.
+              <span className="block text-medical-accent">Thrive Tomorrow.</span>
             </h1>
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              Your trusted partner in pharmaceutical distribution, connecting healthcare providers with life-saving medications across the globe.
+              Unlock your potential with premium nutritional supplements designed to support your health journey every step of the way.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" variant="secondary" className="text-lg px-8 py-3">
@@ -95,10 +95,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Why Choose 365biopharma
+              Why Choose vitalEssentials
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We combine cutting-edge technology with decades of expertise to deliver pharmaceutical solutions you can trust.
+              We combine cutting-edge nutrition science with premium quality ingredients to deliver supplements that support your vitality and wellness goals.
             </p>
           </div>
 
@@ -126,19 +126,19 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Leading Pharmaceutical Distribution Since 2003
+                Your Health. Our Priority.
               </h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                365biopharma has been at the forefront of pharmaceutical distribution, ensuring that life-saving medications reach healthcare providers and patients worldwide. Our commitment to quality, safety, and reliability has made us a trusted partner in the healthcare ecosystem.
+                For almost 60 years we have been providing quality products that are beneficial for your family's health. Promoting your health and well-being is our priority with trusted quality products and strict procedures to comply with industry standards.
               </p>
               <div className="flex items-center space-x-6 mb-8">
                 <div className="flex items-center">
-                  <Users className="h-5 w-5 text-primary mr-2" />
-                  <span className="text-sm font-medium text-foreground">Expert Team</span>
+                  <Shield className="h-5 w-5 text-primary mr-2" />
+                  <span className="text-sm font-medium text-foreground">NSF Certified</span>
                 </div>
                 <div className="flex items-center">
-                  <TrendingUp className="h-5 w-5 text-primary mr-2" />
-                  <span className="text-sm font-medium text-foreground">Proven Growth</span>
+                  <Award className="h-5 w-5 text-primary mr-2" />
+                  <span className="text-sm font-medium text-foreground">Quality Promise</span>
                 </div>
               </div>
               <Button size="lg" className="px-8">
@@ -151,7 +151,7 @@ const Home = () => {
                   <div className="h-16 w-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                     <Globe className="h-8 w-8 text-white" />
                   </div>
-                  <p className="text-lg font-medium text-foreground">Global Healthcare Network</p>
+                  <p className="text-lg font-medium text-foreground">Commitment & Quality</p>
                 </div>
               </div>
             </div>
@@ -166,7 +166,7 @@ const Home = () => {
             Ready to Partner with Us?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of healthcare providers who trust 365biopharma for their pharmaceutical distribution needs.
+            Join thousands of health-conscious individuals who trust vitalEssentials for their nutritional wellness needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary" className="px-8 py-3">
