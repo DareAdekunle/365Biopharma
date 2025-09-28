@@ -1,222 +1,253 @@
-import { Search, Filter, Package, Thermometer, Shield, Clock } from "lucide-react";
+import { Search, Filter, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import productsImage from "@/assets/products-showcase.jpg";
+import { Link } from "react-router-dom";
+import vitaminBottlesCollection from "@/assets/vitamin-bottles-collection.jpg";
+import vitaminBottle1 from "@/assets/vitamin-bottle-1.jpg";
+import tabletBottle from "@/assets/tablet-bottle.jpg";
+import vaccineVial from "@/assets/vaccine-vial.jpg";
 
 const Products = () => {
   const categories = [
     {
       name: "Prescription Medications",
       description: "FDA-approved prescription drugs for various therapeutic areas",
-      icon: Package,
       productCount: "2,500+",
-      features: ["Temperature Controlled", "Batch Tracking", "Expiry Management"]
+      image: tabletBottle,
+      bgColor: "from-blue-400 to-blue-600",
+      link: "/products/prescription-medications"
     },
     {
-      name: "Vaccines & Biologics",
+      name: "Vaccines & Biologics", 
       description: "Cold-chain vaccines and biological products with specialized handling",
-      icon: Thermometer,
       productCount: "850+",
-      features: ["Cold Chain", "Real-time Monitoring", "Compliance Certified"]
+      image: vaccineVial,
+      bgColor: "from-teal-400 to-teal-600",
+      link: "/products/vaccines-biologics"
     },
     {
       name: "Specialty Pharmaceuticals",
-      description: "High-value specialty drugs for complex medical conditions",
-      icon: Shield,
+      description: "High-value specialty drugs for complex medical conditions", 
       productCount: "1,200+",
-      features: ["Secure Transport", "Patient Programs", "Access Solutions"]
+      image: vitaminBottle1,
+      bgColor: "from-purple-400 to-purple-600",
+      link: "/products/specialty-pharmaceuticals"
     },
     {
       name: "Generic Medications",
       description: "Cost-effective generic alternatives with proven quality",
-      icon: Clock,
-      productCount: "5,000+",
-      features: ["Cost Effective", "Quality Assured", "Wide Selection"]
+      productCount: "5,000+", 
+      image: vitaminBottle1,
+      bgColor: "from-orange-400 to-orange-600",
+      link: "/products/generic-medications"
     }
   ];
 
   const therapeuticAreas = [
-    "Cardiology",
-    "Oncology", 
-    "Neurology",
-    "Diabetes",
-    "Respiratory",
-    "Infectious Disease",
-    "Mental Health",
-    "Immunology"
+    { name: "Cardiology", link: "/products/cardiology" },
+    { name: "Oncology", link: "/products/oncology" }, 
+    { name: "Neurology", link: "/products/neurology" },
+    { name: "Diabetes", link: "/products/diabetes" },
+    { name: "Respiratory", link: "/products/respiratory" },
+    { name: "Infectious Disease", link: "/products/infectious-disease" },
+    { name: "Mental Health", link: "/products/mental-health" },
+    { name: "Immunology", link: "/products/immunology" }
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[400px] bg-gradient-to-r from-primary to-primary-dark">
-        <div className="absolute inset-0">
-          <img 
-            src={productsImage} 
-            alt="Pharmaceutical products" 
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-dark/80" />
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Our Product Portfolio
-            </h1>
-            <p className="text-xl text-white/90 mb-8">
-              Comprehensive pharmaceutical solutions across all therapeutic areas with guaranteed quality and reliable supply chain.
-            </p>
+      <section className="relative h-[500px] bg-gradient-to-r from-orange-400 via-orange-500 to-yellow-400 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-between">
+          {/* Hero Content */}
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
+            <div className="max-w-lg">
+              <div className="bg-black/80 text-white px-4 py-2 rounded-r-2xl mb-6 inline-block">
+                <span className="text-sm font-medium">NEW FORMULATIONS</span><br/>
+                <span className="text-sm">COMING SOON</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+                vitalEssentials
+              </h1>
+              <p className="text-2xl text-white/90 mb-8">
+                The ONE for you.
+              </p>
+            </div>
+            
+            {/* Product Image */}
+            <div className="hidden lg:block">
+              <img 
+                src={vitaminBottlesCollection} 
+                alt="VitalEssentials Product Collection" 
+                className="h-80 w-auto object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Search and Filter Section */}
-      <section className="py-8 bg-medical-light border-b">
+      {/* Search Section */}
+      <section className="py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                 <Input 
-                  placeholder="Search products, NDC numbers, or drug names..." 
-                  className="pl-10 h-12"
+                  placeholder="Search products, ingredients, or therapeutic areas..." 
+                  className="pl-10 h-12 border-2 border-gray-200 rounded-lg"
                 />
               </div>
             </div>
-            <Button variant="outline" className="flex items-center">
+            <Button variant="outline" className="flex items-center border-2 border-gray-200 hover:border-primary">
               <Filter className="h-4 w-4 mr-2" />
-              Advanced Filters
+              Filter
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Product Categories */}
-      <section className="py-16 bg-background">
+      {/* Product Categories Grid */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Product Categories
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Explore our comprehensive range of pharmaceutical products across major categories.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category, index) => (
-              <Card key={index} className="p-8 hover:shadow-lg transition-all duration-300 border-border/50 hover:border-primary/20">
-                <div className="flex items-start justify-between mb-6">
-                  <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <category.icon className="h-6 w-6 text-primary" />
+              <Link key={index} to={category.link}>
+                <Card className="group overflow-hidden rounded-2xl border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <div className={`h-64 bg-gradient-to-br ${category.bgColor} relative flex items-center justify-center`}>
+                    <div className="text-center text-white p-6">
+                      <p className="text-sm font-medium uppercase tracking-wide mb-2">PRODUCTS FOR</p>
+                      <h3 className="text-2xl font-bold">{category.name}</h3>
+                    </div>
+                    
+                    {/* Product Image */}
+                    <div className="absolute bottom-4 right-4">
+                      <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
+                        <img 
+                          src={category.image} 
+                          alt={category.name}
+                          className="w-16 h-16 object-contain"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Explore Button */}
+                    <div className="absolute bottom-4 left-4">
+                      <Button 
+                        variant="ghost" 
+                        size="sm"
+                        className="text-white hover:text-white hover:bg-white/20 group-hover:bg-white/30 transition-all"
+                      >
+                        Explore Products
+                        <ArrowRight className="ml-1 h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
-                  <Badge variant="secondary" className="text-sm font-medium">
-                    {category.productCount}
-                  </Badge>
-                </div>
-                
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {category.name}
-                </h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {category.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {category.features.map((feature, idx) => (
-                    <Badge key={idx} variant="outline" className="text-xs">
-                      {feature}
-                    </Badge>
-                  ))}
-                </div>
-                
-                <Button variant="outline" className="w-full">
-                  Explore Category
-                </Button>
-              </Card>
+                </Card>
+              </Link>
             ))}
+            
+            {/* Special Category - Heart Health */}
+            <Link to="/products/heart-health">
+              <Card className="group overflow-hidden rounded-2xl border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+                <div className="h-64 bg-gradient-to-br from-red-400 to-red-600 relative flex items-center justify-center">
+                  <div className="text-center text-white p-6">
+                    <p className="text-sm font-medium uppercase tracking-wide mb-2">PRODUCTS SUPPORTING</p>
+                    <h3 className="text-2xl font-bold">Heart Health‡*</h3>
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mt-4">
+                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute bottom-4 left-4">
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      className="text-white hover:text-white hover:bg-white/20 group-hover:bg-white/30 transition-all"
+                    >
+                      Explore Products
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+
+            {/* Special Category - Energy Support */}
+            <Link to="/products/energy-support">
+              <Card className="group overflow-hidden rounded-2xl border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+                <div className="h-64 bg-gradient-to-br from-green-400 to-green-600 relative flex items-center justify-center">
+                  <div className="text-center text-white p-6">
+                    <p className="text-sm font-medium uppercase tracking-wide mb-2">PRODUCTS SUPPORTING</p>
+                    <h3 className="text-2xl font-bold">Energy§*</h3>
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mt-4">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <div className="absolute bottom-4 left-4">
+                    <Button 
+                      variant="ghost" 
+                      size="sm"
+                      className="text-white hover:text-white hover:bg-white/20 group-hover:bg-white/30 transition-all"
+                    >
+                      Explore Products
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Therapeutic Areas */}
-      <section className="py-16 bg-medical-light">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Therapeutic Areas
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              We serve all major therapeutic areas with specialized expertise and tailored solutions.
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Specialized solutions across all major therapeutic categories
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {therapeuticAreas.map((area, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-md transition-all duration-300 hover:border-primary/20 cursor-pointer">
-                <h3 className="font-semibold text-foreground mb-2">{area}</h3>
-                <p className="text-sm text-muted-foreground">View Products</p>
-              </Card>
+              <Link key={index} to={area.link}>
+                <Card className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:border-primary/20 cursor-pointer border-2 border-gray-100 rounded-xl">
+                  <h3 className="font-semibold text-gray-900 mb-2">{area.name}</h3>
+                  <p className="text-sm text-primary font-medium">View Products →</p>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Comprehensive Distribution Services
-              </h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="h-8 w-8 bg-primary/10 rounded-lg flex items-center justify-center mr-4 mt-1">
-                    <Thermometer className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Cold Chain Management</h3>
-                    <p className="text-muted-foreground">Temperature-controlled storage and transportation for vaccines and biologics.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="h-8 w-8 bg-primary/10 rounded-lg flex items-center justify-center mr-4 mt-1">
-                    <Shield className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Quality Assurance</h3>
-                    <p className="text-muted-foreground">Rigorous quality control processes ensuring product integrity throughout the supply chain.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="h-8 w-8 bg-primary/10 rounded-lg flex items-center justify-center mr-4 mt-1">
-                    <Package className="h-4 w-4 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Inventory Management</h3>
-                    <p className="text-muted-foreground">Advanced inventory tracking with real-time visibility and automated reordering.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-br from-primary/5 to-medical-accent/10 rounded-2xl p-8">
-              <h3 className="text-xl font-semibold text-foreground mb-4">Request Product Information</h3>
-              <p className="text-muted-foreground mb-6">
-                Need specific product details or availability? Our team is ready to assist you with customized solutions.
-              </p>
-              <div className="space-y-4">
-                <Input placeholder="Product name or NDC number" />
-                <Input placeholder="Your email address" />
-                <Button className="w-full">Submit Request</Button>
-              </div>
-            </div>
+      {/* Footer CTA */}
+      <section className="py-16 bg-gradient-to-r from-primary to-primary-dark">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Need Help Finding the Right Product?
+          </h2>
+          <p className="text-xl text-white/90 mb-8">
+            Our pharmaceutical experts are here to help you find the perfect solution for your needs.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
+              Contact Our Team
+            </Button>
+            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              Request Product Information
+            </Button>
           </div>
         </div>
       </section>
