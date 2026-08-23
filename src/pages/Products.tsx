@@ -1,256 +1,247 @@
-import { Search, Filter, ArrowRight } from "lucide-react";
+import { ArrowRight, AlertCircle, Pill, Leaf, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import vitaminBottlesCollection from "@/assets/vitamin-bottles-collection.jpg";
-import vitaminBottle1 from "@/assets/vitamin-bottle-1.jpg";
-import tabletBottle from "@/assets/tablet-bottle.jpg";
-import vaccineVial from "@/assets/vaccine-vial.jpg";
+
+import ultraWomenImg from "@/assets/ProductDetails/UltraWomen/UltraWomen BoxBottle.png";
+import ultraMenImg from "@/assets/ProductDetails/UltraMen/UltraMen BoxBottle.png";
+import ultraKidzImg from "@/assets/ProductDetails/UltraKidz/UltraKidz BoxBottle.png";
+
+const prescriptionProducts = [
+  {
+    brand: "Xydap®",
+    generic: "Dapagliflozin",
+    area: "Endocrinology · Cardiology · Nephrology",
+    areaColor: "#0072EC",
+    areaBg: "#EFF6FF",
+    description:
+      "Xydap is indicated in the management of type 2 diabetes and associated cardiovascular and renal conditions, as prescribed by a physician.",
+    availability: "Prescription only — dispensed through licensed pharmacies and hospitals.",
+    gradient: "from-brand-navy to-brand-primary",
+  },
+  {
+    brand: "Peqlis®",
+    generic: "Apixaban",
+    area: "Cardiology",
+    areaColor: "#e11d48",
+    areaBg: "#FFF1F2",
+    description:
+      "Peqlis is indicated for the prevention and management of blood clot-related conditions, as prescribed by a physician.",
+    availability: "Prescription only — dispensed through licensed pharmacies and hospitals.",
+    gradient: "from-[#7f1d1d] to-[#dc2626]",
+  },
+];
+
+const otcProducts = [
+  {
+    name: "Fatigue & Recovery",
+    for: "Adults",
+    img: ultraMenImg,
+    gradient: "from-orange-500 to-amber-500",
+    description:
+      "A multivitamin and supplement formulation designed to support energy levels and recovery for adults managing everyday fatigue and demanding lifestyles.",
+    ingredients: "B-vitamins, Iron, Magnesium, L-Carnitine, Coenzyme Q10 and more.",
+  },
+  {
+    name: "Wellness & Immunity",
+    for: "Adults & Children",
+    img: ultraWomenImg,
+    gradient: "from-purple-600 to-pink-500",
+    description:
+      "A daily supplement formulated to support overall wellness and a healthy immune system for the whole family.",
+    ingredients: "Vitamin C, Zinc, Vitamin D, Selenium and more.",
+  },
+  {
+    name: "Appetite & Growth",
+    for: "Children",
+    img: ultraKidzImg,
+    gradient: "from-emerald-600 to-teal-500",
+    description:
+      "Specially formulated to support healthy appetite and growth in growing children.",
+    ingredients: "DHA, Probiotics, Calcium, Vitamin D, B12, Iron and more.",
+  },
+];
 
 const Products = () => {
-  const categories = [
-    {
-      name: "Prescription Medications",
-      description: "FDA-approved prescription drugs for various therapeutic areas",
-      productCount: "2,500+",
-      image: tabletBottle,
-      bgColor: "from-blue-400 to-blue-600",
-      link: "/products/prescription-medications"
-    },
-    {
-      name: "Vaccines & Biologics", 
-      description: "Cold-chain vaccines and biological products with specialized handling",
-      productCount: "850+",
-      image: vaccineVial,
-      bgColor: "from-teal-400 to-teal-600",
-      link: "/products/vaccines-biologics"
-    },
-    {
-      name: "Specialty Pharmaceuticals",
-      description: "High-value specialty drugs for complex medical conditions", 
-      productCount: "1,200+",
-      image: vitaminBottle1,
-      bgColor: "from-purple-400 to-purple-600",
-      link: "/products/specialty-pharmaceuticals"
-    },
-    {
-      name: "Generic Medications",
-      description: "Cost-effective generic alternatives with proven quality",
-      productCount: "5,000+", 
-      image: vitaminBottle1,
-      bgColor: "from-orange-400 to-orange-600",
-      link: "/products/generic-medications"
-    }
-  ];
-
-  const therapeuticAreas = [
-    { name: "Cardiology", link: "/products/cardiology" },
-    { name: "Oncology", link: "/products/oncology" }, 
-    { name: "Neurology", link: "/products/neurology" },
-    { name: "Diabetes", link: "/products/diabetes" },
-    { name: "Respiratory", link: "/products/respiratory" },
-    { name: "Infectious Disease", link: "/products/infectious-disease" },
-    { name: "Mental Health", link: "/products/mental-health" },
-    { name: "Immunology", link: "/products/immunology" }
-  ];
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[500px] bg-gradient-to-r from-orange-400 via-orange-500 to-yellow-400 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-between">
-          {/* Hero Content */}
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex items-center justify-between">
-            <div className="max-w-lg">
-              <div className="bg-black/80 text-white px-4 py-2 rounded-r-2xl mb-6 inline-block">
-                <span className="text-sm font-medium">NEW FORMULATIONS</span><br/>
-                <span className="text-sm">COMING SOON</span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-                vitalEssentials
-              </h1>
-              <p className="text-2xl text-white/90 mb-8">
-                The ONE for you.
-              </p>
-            </div>
-            
-            {/* Product Image */}
-            <div className="hidden lg:block">
-              <img 
-                src={vitaminBottlesCollection} 
-                alt="VitalEssentials Product Collection" 
-                className="h-80 w-auto object-contain"
-              />
-            </div>
-          </div>
+    <div className="min-h-screen bg-white">
+
+      {/* ── HERO ──────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-navy via-brand-primary to-brand-teal">
+        <div className="absolute top-[-80px] right-[-80px] w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-white/60 mb-3">365Biopharma Limited</p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white mb-5 leading-tight max-w-2xl">
+            Our Products
+          </h1>
+          <p className="text-lg text-white/70 max-w-2xl leading-relaxed">
+            At 365Biopharma Limited, our portfolio spans specialist prescription therapies and everyday wellness essentials — each developed to meet rigorous quality standards and the real needs of Nigerian patients and families.
+          </p>
+          <p className="text-white/50 text-sm mt-4 max-w-2xl italic">
+            True to our promise of "Tomorrow's Medicine Today", every product is chosen and managed with an eye on both immediate patient needs and long-term health outcomes.
+          </p>
         </div>
       </section>
 
-      {/* Search Section */}
-      <section className="py-8 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-            <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
-                <Input 
-                  placeholder="Search products, ingredients, or therapeutic areas..." 
-                  className="pl-10 h-12 border-2 border-gray-200 rounded-lg"
-                />
-              </div>
-            </div>
-            <Button variant="outline" className="flex items-center border-2 border-gray-200 hover:border-primary">
-              <Filter className="h-4 w-4 mr-2" />
-              Filter
-            </Button>
-          </div>
+      {/* ── DISCLAIMER ────────────────────────────────────── */}
+      <div className="bg-amber-50 border-b border-amber-100">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-4 flex items-start gap-3">
+          <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+          <p className="text-amber-800 text-sm leading-relaxed">
+            <strong>Important:</strong> Prescription medications listed below require a valid prescription from a licensed healthcare provider. Information provided here is for general awareness only and does not constitute medical advice. Please consult your physician or pharmacist before starting any medication.
+          </p>
         </div>
-      </section>
+      </div>
 
-      {/* Product Categories Grid */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category, index) => (
-              <Link key={index} to={category.link}>
-                <Card className="group overflow-hidden rounded-2xl border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                  <div className={`h-64 bg-gradient-to-br ${category.bgColor} relative flex items-center justify-center`}>
-                    <div className="text-center text-white p-6">
-                      <p className="text-sm font-medium uppercase tracking-wide mb-2">PRODUCTS FOR</p>
-                      <h3 className="text-2xl font-bold">{category.name}</h3>
-                    </div>
-                    
-                    {/* Product Image */}
-                    <div className="absolute bottom-4 right-4">
-                      <div className="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
-                        <img 
-                          src={category.image} 
-                          alt={category.name}
-                          className="w-16 h-16 object-contain"
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* Explore Button */}
-                    <div className="absolute bottom-4 left-4">
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        className="text-white hover:text-white hover:bg-white/20 group-hover:bg-white/30 transition-all"
-                      >
-                        Explore Products
-                        <ArrowRight className="ml-1 h-4 w-4" />
+      {/* ── PRESCRIPTION PRODUCTS ─────────────────────────── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="h-8 w-8 rounded-lg bg-brand-primary/10 flex items-center justify-center">
+              <Pill className="h-4 w-4 text-brand-primary" />
+            </div>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-brand-primary">Prescription-Only Medications (POM)</p>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold font-heading text-gray-900 mb-3">
+            Specialist Prescription Therapies
+          </h2>
+          <p className="text-gray-500 mb-10 max-w-2xl leading-relaxed">
+            Specialist medicines developed to support patients living with chronic and acute conditions across Nephrology, Cardiology, and Endocrinology — available through licensed healthcare providers and pharmacies.
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {prescriptionProducts.map((p) => (
+              <div
+                key={p.brand}
+                className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${p.gradient} p-8 shadow-xl`}
+              >
+                <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-white/5 pointer-events-none -translate-y-1/3 translate-x-1/3" />
+                <div className="relative z-10">
+                  {/* Therapeutic area badge */}
+                  <span
+                    className="inline-block text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-5"
+                    style={{ background: p.areaBg, color: p.areaColor }}
+                  >
+                    {p.area}
+                  </span>
+
+                  <div className="mb-4">
+                    <h3 className="text-3xl font-bold font-heading text-white mb-1">{p.brand}</h3>
+                    <p className="text-white/50 text-sm">{p.generic}</p>
+                  </div>
+
+                  <p className="text-white/80 text-[15px] leading-relaxed mb-5">{p.description}</p>
+
+                  <div className="flex items-start gap-2 bg-white/10 rounded-xl p-4 mb-6">
+                    <FileText className="h-4 w-4 text-white/60 flex-shrink-0 mt-0.5" />
+                    <p className="text-white/70 text-xs leading-relaxed">{p.availability}</p>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <Link to="/contact">
+                      <Button size="sm" className="bg-white text-brand-navy hover:bg-brand-aqua font-semibold rounded-xl px-5">
+                        Enquire
                       </Button>
-                    </div>
+                    </Link>
                   </div>
-                </Card>
-              </Link>
+                </div>
+              </div>
             ))}
-            
-            {/* Special Category - Heart Health */}
-            <Link to="/products/heart-health">
-              <Card className="group overflow-hidden rounded-2xl border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                <div className="h-64 bg-gradient-to-br from-red-400 to-red-600 relative flex items-center justify-center">
-                  <div className="text-center text-white p-6">
-                    <p className="text-sm font-medium uppercase tracking-wide mb-2">PRODUCTS SUPPORTING</p>
-                    <h3 className="text-2xl font-bold">Heart Health‡*</h3>
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mt-4">
-                      <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute bottom-4 left-4">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="text-white hover:text-white hover:bg-white/20 group-hover:bg-white/30 transition-all"
-                    >
-                      Explore Products
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            </Link>
-
-            {/* Special Category - Energy Support */}
-            <Link to="/products/energy-support">
-              <Card className="group overflow-hidden rounded-2xl border-0 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
-                <div className="h-64 bg-gradient-to-br from-green-400 to-green-600 relative flex items-center justify-center">
-                  <div className="text-center text-white p-6">
-                    <p className="text-sm font-medium uppercase tracking-wide mb-2">PRODUCTS SUPPORTING</p>
-                    <h3 className="text-2xl font-bold">Energy§*</h3>
-                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mt-4">
-                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <div className="absolute bottom-4 left-4">
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="text-white hover:text-white hover:bg-white/20 group-hover:bg-white/30 transition-all"
-                    >
-                      Explore Products
-                      <ArrowRight className="ml-1 h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            </Link>
           </div>
+
+          <p className="text-gray-400 text-xs mt-6 text-center">
+            As our POM portfolio grows, additional therapeutic products will be listed here. Contact us for a full product catalogue.
+          </p>
         </div>
       </section>
 
-      {/* Therapeutic Areas */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Therapeutic Areas
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Specialized solutions across all major therapeutic categories
+      {/* ── OTC PRODUCTS ──────────────────────────────────── */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="h-8 w-8 rounded-lg bg-emerald-100 flex items-center justify-center">
+              <Leaf className="h-4 w-4 text-emerald-600" />
+            </div>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600">Over-the-Counter (OTC)</p>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold font-heading text-gray-900 mb-3">
+            vitalEssentials — Nutritional Support for Every Stage of Life
+          </h2>
+          <p className="text-gray-500 mb-10 max-w-2xl leading-relaxed">
+            Everyday multivitamins and supplements designed to support the wellness of adults and children — available without a prescription at pharmacies and retail outlets nationwide.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {otcProducts.map((p) => (
+              <Card key={p.name} className="overflow-hidden rounded-2xl border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white">
+                {/* Product image header */}
+                <div className={`relative bg-gradient-to-br ${p.gradient} flex items-end justify-center pt-8`} style={{ height: "200px" }}>
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="h-44 w-auto object-contain drop-shadow-2xl absolute bottom-0"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="text-[10px] font-bold uppercase tracking-widest bg-white/20 text-white px-2.5 py-1 rounded-full">
+                      For {p.for}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-1">vitalEssentials</div>
+                  <h3 className="text-lg font-bold font-heading text-gray-900 mb-3">{p.name}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{p.description}</p>
+
+                  <div className="rounded-xl bg-gray-50 border border-gray-100 p-3 mb-5">
+                    <p className="text-xs text-gray-400 font-semibold uppercase tracking-widest mb-1">Key Actives</p>
+                    <p className="text-gray-600 text-xs leading-relaxed">{p.ingredients}</p>
+                  </div>
+
+                  <p className="text-xs text-gray-400 italic">
+                    Consult your pharmacist for dosage guidance.
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-8 p-5 rounded-2xl bg-blue-50 border border-blue-100 text-center max-w-3xl mx-auto">
+            <p className="text-blue-700 text-sm leading-relaxed">
+              All medications are manufactured in accordance with international quality standards by our trusted manufacturing partner, with full quality assurance, regulatory compliance, and distribution managed locally by 365Biopharma Limited in Nigeria.
             </p>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {therapeuticAreas.map((area, index) => (
-              <Link key={index} to={area.link}>
-                <Card className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:border-primary/20 cursor-pointer border-2 border-gray-100 rounded-xl">
-                  <h3 className="font-semibold text-gray-900 mb-2">{area.name}</h3>
-                  <p className="text-sm text-primary font-medium">View Products →</p>
-                </Card>
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Footer CTA */}
-      <section className="py-16 bg-gradient-to-r from-primary to-primary-dark">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+      {/* ── CTA ────────────────────────────────────────────── */}
+      <section className="py-16 bg-gradient-to-br from-brand-navy to-brand-primary">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold font-heading text-white mb-4">
             Need Help Finding the Right Product?
           </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Our pharmaceutical experts are here to help you find the perfect solution for your needs.
+          <p className="text-white/70 mb-8 leading-relaxed">
+            Our team is here to help healthcare providers, pharmacies, and patients find the right solution. Reach out with any enquiry.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
-              Contact Our Team
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-              Request Product Information
-            </Button>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link to="/contact">
+              <Button size="lg" className="bg-brand-cyan text-brand-navy hover:bg-white font-semibold rounded-xl px-8">
+                Contact Our Team
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
+
+      {/* Medical disclaimer */}
+      <div className="bg-gray-50 border-t border-gray-100 py-4 px-6 text-center">
+        <p className="text-xs text-gray-400 max-w-4xl mx-auto leading-relaxed">
+          Content on this website is for general informational purposes only and does not replace professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider before starting any medication. Prescription medications require a valid prescription from a licensed healthcare provider.
+        </p>
+      </div>
     </div>
   );
 };

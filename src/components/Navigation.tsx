@@ -12,71 +12,74 @@ const Navigation = () => {
     { name: "About", href: "/about" },
     { name: "Products", href: "/products" },
     { name: "Stories", href: "/stories" },
-    { name: "Contact", href: "/contact" },
   ];
 
-  const isActive = (href: string) => location.pathname === href;
+  const isActive = (href: string) => location.pathname === href || (href !== "/" && location.pathname.startsWith(href));
 
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-background/95">
+    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center">
-              <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center mr-3">
-                <span className="text-primary-foreground font-bold text-sm">365</span>
+            <Link to="/" className="flex-shrink-0 flex items-center gap-3">
+              <div className="h-9 w-9 bg-brand-navy rounded-xl flex items-center justify-center flex-shrink-0">
+                <span className="text-white font-bold text-sm font-heading">365</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-foreground leading-tight">vitalEssentials</span>
-                <span className="text-xs text-muted-foreground leading-tight">by 365biopharma</span>
+                <span className="text-base font-bold text-gray-900 leading-tight font-heading">365Biopharma</span>
+                <span className="text-[10px] text-brand-teal font-semibold leading-tight tracking-wide uppercase">Tomorrow's Medicine Today</span>
               </div>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-1">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActive(item.href)
-                    ? "text-primary border-b-2 border-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-brand-primary bg-blue-50"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <Button variant="default" size="sm">
-              Get Quote
-            </Button>
+            <Link to="/contact">
+              <Button
+                size="sm"
+                className="ml-3 bg-brand-primary hover:bg-brand-navy text-white rounded-xl px-5 font-semibold transition-all duration-200"
+              >
+                Contact Us
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4">
-            <div className="flex flex-col space-y-2">
+          <div className="md:hidden pb-4 border-t border-gray-100 pt-3">
+            <div className="flex flex-col gap-1">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActive(item.href)
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-brand-primary bg-blue-50"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
@@ -84,9 +87,11 @@ const Navigation = () => {
                 </Link>
               ))}
               <div className="pt-2">
-                <Button variant="default" size="sm" className="w-full">
-                  Get Quote
-                </Button>
+                <Link to="/contact" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full bg-brand-primary hover:bg-brand-navy text-white rounded-xl font-semibold">
+                    Contact Us
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

@@ -18,6 +18,11 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+				heading: ['Poppins', 'system-ui', 'sans-serif'],
+				body: ['Inter', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -40,6 +45,15 @@ export default {
 				},
 				professional: {
 					gray: 'hsl(var(--professional-gray))'
+				},
+				brand: {
+					primary: '#0072EC',
+					teal: '#00B5A2',
+					navy: '#004D9C',
+					cyan: '#33D4F2',
+					aqua: '#D0F7F2',
+					charcoal: '#2B2B2B',
+					gray: '#5C6B73',
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',

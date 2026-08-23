@@ -1,248 +1,284 @@
-import { Calendar, User, ArrowRight, TrendingUp, Award, Globe } from "lucide-react";
+import { useState } from "react";
+import { Calendar, User, ArrowRight, Clock, BookOpen, Building2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { blogPosts, getFeaturedPost } from "@/data/blogPosts";
+
+import ultraWomenImg from "@/assets/ProductDetails/UltraWomen/UltraWomen BoxBottle.png";
+import ultraMenImg from "@/assets/ProductDetails/UltraMen/UltraMen BoxBottle.png";
+import ultraKidzImg from "@/assets/ProductDetails/UltraKidz/UltraKidz BoxBottle.png";
 import newsImage from "@/assets/news-stories.jpg";
 
+const heroImages: Record<string, string> = {
+  "introducing-vitalessentials": newsImage,
+  "whole-food-fermented-multivitamins": ultraWomenImg,
+  "introducing-ultrakidz": ultraKidzImg,
+  "why-we-built-vitalessentials": ultraMenImg,
+  "fatigue-recovery-formula": ultraMenImg,
+};
+
+const categoryColors: Record<string, { bg: string; text: string; dot: string }> = {
+  "Product Launch":    { bg: "#F3E8FF", text: "#7e22ce", dot: "#9333ea" },
+  "Company News":      { bg: "#DBEAFE", text: "#1d4ed8", dot: "#0072EC" },
+  "Health & Wellness": { bg: "#D1FAE5", text: "#065f46", dot: "#059669" },
+  "Clinical Review":   { bg: "#FEF3C7", text: "#92400e", dot: "#d97706" },
+};
+
+const allCategories = ["All", "Company News", "Product Launch", "Health & Wellness", "Clinical Review"];
+
 const Stories = () => {
-  const featuredStory = {
-    title: "PharmaDistrib Expands Cold Chain Network Across Asia-Pacific",
-    excerpt: "Our new state-of-the-art cold storage facilities in Singapore, Tokyo, and Sydney ensure seamless vaccine distribution across the Asia-Pacific region, supporting global health initiatives.",
-    date: "2024-01-15",
-    author: "Dr. Sarah Chen",
-    category: "Expansion",
-    readTime: "5 min read",
-    image: newsImage
-  };
+  const sorted = [...blogPosts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const featured = sorted[0];
+  const rest = sorted.slice(1);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [email, setEmail] = useState("");
 
-  const stories = [
-    {
-      title: "Partnership with WHO for Global Vaccine Distribution",
-      excerpt: "PharmaDistrib joins World Health Organization's initiative to enhance vaccine accessibility in developing nations.",
-      date: "2024-01-10",
-      author: "Michael Roberts",
-      category: "Partnership",
-      readTime: "3 min read"
-    },
-    {
-      title: "AI-Powered Inventory Management Reduces Waste by 40%",
-      excerpt: "Our new artificial intelligence system optimizes inventory levels, significantly reducing pharmaceutical waste while ensuring product availability.",
-      date: "2024-01-08",
-      author: "Dr. Emily Watson",
-      category: "Technology",
-      readTime: "4 min read"
-    },
-    {
-      title: "Q4 2023 Financial Results: Record Growth in Specialty Pharmaceuticals",
-      excerpt: "Fourth quarter results show 35% growth in specialty pharmaceutical distribution, driven by increased demand for oncology treatments.",
-      date: "2024-01-05",
-      author: "James Thompson",
-      category: "Financial",
-      readTime: "6 min read"
-    },
-    {
-      title: "Sustainability Initiative: Carbon-Neutral Delivery Network",
-      excerpt: "PharmaDistrib commits to achieving carbon neutrality in our delivery network by 2025 through electric vehicles and renewable energy.",
-      date: "2024-01-03",
-      author: "Lisa Park",
-      category: "Sustainability",
-      readTime: "4 min read"
-    },
-    {
-      title: "New FDA Certification for Advanced Cold Storage Facilities",
-      excerpt: "Our latest cold storage facilities receive FDA certification, meeting the highest standards for vaccine and biologics storage.",
-      date: "2023-12-28",
-      author: "Dr. Robert Kim",
-      category: "Certification",
-      readTime: "3 min read"
-    },
-    {
-      title: "Industry Recognition: Excellence in Pharmaceutical Logistics Award",
-      excerpt: "PharmaDistrib receives prestigious industry award for outstanding contribution to pharmaceutical supply chain innovation.",
-      date: "2023-12-25",
-      author: "Anna Rodriguez",
-      category: "Award",
-      readTime: "2 min read"
-    }
-  ];
-
-  const categories = [
-    { name: "All Stories", count: 24 },
-    { name: "Company News", count: 8 },
-    { name: "Technology", count: 6 },
-    { name: "Partnerships", count: 5 },
-    { name: "Sustainability", count: 3 },
-    { name: "Awards", count: 2 }
-  ];
-
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case "Technology": return TrendingUp;
-      case "Award": return Award;
-      case "Expansion": return Globe;
-      default: return Calendar;
-    }
-  };
+  const filtered = activeCategory === "All"
+    ? rest
+    : rest.filter((p) => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[400px] bg-gradient-to-r from-primary to-primary-dark">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-dark/80" />
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Stories & News
-            </h1>
-            <p className="text-xl text-white/90 mb-8">
-              Stay updated with the latest developments, partnerships, and innovations from PharmaDistrib as we continue to advance pharmaceutical distribution worldwide.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-white">
 
-      {/* Featured Story */}
-      <section className="py-16 bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-8">
-            <Badge variant="default" className="mb-4">Featured Story</Badge>
-          </div>
-          
-          <Card className="overflow-hidden hover:shadow-lg transition-all duration-300">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              <div className="aspect-video lg:aspect-auto">
-                <img 
-                  src={featuredStory.image} 
-                  alt={featuredStory.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-8 flex flex-col justify-center">
-                <div className="flex items-center gap-4 mb-4">
-                  <Badge variant="outline">{featuredStory.category}</Badge>
-                  <span className="text-sm text-muted-foreground">{featuredStory.readTime}</span>
-                </div>
-                
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
-                  {featuredStory.title}
-                </h2>
-                
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {featuredStory.excerpt}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <User className="h-4 w-4 mr-2" />
-                    <span className="mr-4">{featuredStory.author}</span>
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>{new Date(featuredStory.date).toLocaleDateString()}</span>
-                  </div>
-                  
-                  <Button variant="outline" className="flex items-center">
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </section>
-
-      {/* Stories Grid */}
-      <section className="py-16 bg-medical-light">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar with Categories */}
-            <div className="lg:w-1/4">
-              <div className="sticky top-8">
-                <h3 className="text-lg font-semibold text-foreground mb-4">Categories</h3>
-                <div className="space-y-2">
-                  {categories.map((category, index) => (
-                    <button
-                      key={index}
-                      className="w-full text-left p-3 rounded-lg hover:bg-background transition-colors border border-transparent hover:border-border"
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-medium text-foreground">{category.name}</span>
-                        <span className="text-xs text-muted-foreground">{category.count}</span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Stories Grid */}
-            <div className="lg:w-3/4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {stories.map((story, index) => {
-                  const CategoryIcon = getCategoryIcon(story.category);
-                  
-                  return (
-                    <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 hover:border-primary/20 cursor-pointer">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="h-8 w-8 bg-primary/10 rounded-lg flex items-center justify-center">
-                          <CategoryIcon className="h-4 w-4 text-primary" />
-                        </div>
-                        <Badge variant="outline" className="text-xs">
-                          {story.category}
-                        </Badge>
-                      </div>
-                      
-                      <h3 className="text-lg font-semibold text-foreground mb-3 leading-tight">
-                        {story.title}
-                      </h3>
-                      
-                      <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                        {story.excerpt}
-                      </p>
-                      
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
-                        <div className="flex items-center">
-                          <User className="h-3 w-3 mr-1" />
-                          <span className="mr-3">{story.author}</span>
-                          <Calendar className="h-3 w-3 mr-1" />
-                          <span>{new Date(story.date).toLocaleDateString()}</span>
-                        </div>
-                        <span>{story.readTime}</span>
-                      </div>
-                    </Card>
-                  );
-                })}
-              </div>
-              
-              {/* Load More Button */}
-              <div className="text-center mt-12">
-                <Button variant="outline" size="lg">
-                  Load More Stories
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Signup */}
-      <section className="py-16 bg-primary">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Stay Updated
-          </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Subscribe to our newsletter and never miss important updates from PharmaDistrib.
+      {/* ── HERO ──────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-brand-navy via-brand-primary to-brand-teal">
+        <div className="absolute top-[-80px] right-[-80px] w-96 h-96 rounded-full bg-white/5 pointer-events-none" />
+        <div className="absolute bottom-[-40px] left-[-40px] w-64 h-64 rounded-full bg-white/5 pointer-events-none" />
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-white/60 mb-3">365Biopharma Limited</p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading text-white mb-5 max-w-2xl leading-tight">
+            Stories & News
+          </h1>
+          <p className="text-lg text-white/70 max-w-xl leading-relaxed">
+            The people, purpose, and progress behind 365Biopharma Limited — company milestones, health education, clinical insights, and community stories.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+        </div>
+      </section>
+
+      {/* ── OUR STORY INTRO ───────────────────────────────────── */}
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Building2,
+                color: "#0072EC",
+                bg: "#EFF6FF",
+                title: "Our Story",
+                subtitle: "Why We Started",
+                body: "365Biopharma was founded in 2025 with a conviction: that Nigerian patients deserve access to the best medicines — not someday, but now. We are a Lagos-based pharmaceutical company bridging the gap between global medical innovation and everyday Nigerian healthcare.",
+                link: "/stories/why-we-built-vitalessentials",
+                cta: "Read Our Founding Story",
+              },
+              {
+                icon: BookOpen,
+                color: "#00B5A2",
+                bg: "#F0FDF4",
+                title: "Health & Wellness Insights",
+                subtitle: "Clinical Education",
+                body: "Evidence-based articles on conditions we treat, healthy living, and how our products work — written for patients, caregivers, and healthcare professionals across Nigeria.",
+                link: "#articles",
+                cta: "Browse Health Articles",
+              },
+              {
+                icon: Users,
+                color: "#9333ea",
+                bg: "#F3E8FF",
+                title: "Community & Newsroom",
+                subtitle: "Impact & Updates",
+                body: "Company announcements, partnerships, community health initiatives, and press coverage. Follow our journey as we grow and expand access to quality medicines across Nigeria.",
+                link: "#articles",
+                cta: "See Latest News",
+              },
+            ].map(({ icon: Icon, color, bg, title, subtitle, body, link, cta }) => (
+              <Link key={title} to={link} className="group block">
+                <div className="h-full rounded-2xl border border-gray-100 p-7 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                  <div className="h-11 w-11 rounded-xl flex items-center justify-center mb-5" style={{ background: bg }}>
+                    <Icon className="h-5 w-5" style={{ color }} />
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color }}>{subtitle}</p>
+                  <h3 className="text-lg font-bold font-heading text-gray-900 mb-3">{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-5">{body}</p>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold group-hover:gap-2.5 transition-all" style={{ color }}>
+                    {cta} <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURED ARTICLE ──────────────────────────────────── */}
+      <section className="py-16 bg-white" id="articles">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-brand-primary mb-6">Featured Story</p>
+
+          <Link to={`/stories/${featured.slug}`} className="group block">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-gray-100 hover:shadow-2xl hover:border-gray-200 transition-all duration-300">
+              {/* Image panel */}
+              <div className="relative h-64 lg:h-auto overflow-hidden bg-gradient-to-br from-brand-navy via-brand-primary to-brand-teal">
+                <img
+                  src={heroImages[featured.slug] || newsImage}
+                  alt={featured.title}
+                  className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <div className="absolute bottom-5 left-5">
+                  <span
+                    className="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full"
+                    style={{
+                      background: categoryColors[featured.category]?.bg || "#F3F4F6",
+                      color: categoryColors[featured.category]?.text || "#374151",
+                    }}
+                  >
+                    {featured.category}
+                  </span>
+                </div>
+              </div>
+
+              {/* Text panel */}
+              <div className="p-8 lg:p-10 flex flex-col justify-center bg-white">
+                <div className="flex items-center gap-4 mb-5 text-xs text-gray-400">
+                  <span className="flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5" />
+                    {featured.readTime}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5" />
+                    {new Date(featured.date).toLocaleDateString("en-GB", {
+                      day: "numeric", month: "long", year: "numeric",
+                    })}
+                  </span>
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl font-bold font-heading text-gray-900 leading-tight mb-4 group-hover:text-brand-primary transition-colors">
+                  {featured.title}
+                </h2>
+                <p className="text-gray-500 leading-relaxed mb-7 text-[15px]">
+                  {featured.excerpt}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-sm">
+                    <div className="w-8 h-8 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary text-xs font-bold">
+                      {featured.author.split(" ").map((w) => w[0]).join("").slice(0, 2)}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-gray-900 text-xs">{featured.author}</div>
+                      <div className="text-gray-400 text-xs">{featured.authorRole}</div>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary group-hover:gap-3 transition-all">
+                    Read article
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* ── CATEGORY FILTER + ARTICLES GRID ──────────────────── */}
+      <section className="py-6 pb-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+
+          {/* Filter pills */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {allCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200"
+                style={
+                  activeCategory === cat
+                    ? { background: "#0072EC", color: "#fff" }
+                    : { background: "#fff", color: "#6b7280", border: "1px solid #e5e7eb" }
+                }
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((post) => {
+              const cc = categoryColors[post.category] || { bg: "#F3F4F6", text: "#374151", dot: "#6b7280" };
+              return (
+                <Link key={post.slug} to={`/stories/${post.slug}`} className="group block">
+                  <Card className="h-full p-6 border-gray-100 hover:border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white rounded-2xl overflow-hidden">
+                    <div className="h-1 rounded-full mb-6 -mx-6 -mt-6" style={{ background: cc.dot }} />
+
+                    <div className="flex items-center gap-2 mb-4">
+                      <span
+                        className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                        style={{ background: cc.bg, color: cc.text }}
+                      >
+                        {post.category}
+                      </span>
+                      <span className="flex items-center gap-1 text-[11px] text-gray-400">
+                        <Clock className="h-3 w-3" />
+                        {post.readTime}
+                      </span>
+                    </div>
+
+                    <h3 className="text-base font-bold text-gray-900 leading-snug mb-3 group-hover:text-brand-primary transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed mb-5 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
+                      <div className="flex items-center gap-2 text-xs text-gray-400">
+                        <User className="h-3 w-3" />
+                        <span>{post.author}</span>
+                        <span>·</span>
+                        <Calendar className="h-3 w-3" />
+                        <span>{new Date(post.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</span>
+                      </div>
+                    </div>
+
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-primary mt-3 group-hover:gap-2 transition-all">
+                      Read more <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+
+          {filtered.length === 0 && (
+            <div className="text-center py-20 text-gray-400">No articles in this category yet.</div>
+          )}
+        </div>
+      </section>
+
+      {/* ── NEWSLETTER ────────────────────────────────────────── */}
+      <section className="py-16 bg-gradient-to-r from-brand-navy to-brand-primary">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold font-heading text-white mb-3">Stay Informed</h2>
+          <p className="text-white/70 mb-8 leading-relaxed">
+            Company updates, health education articles, and new product launches — delivered to your inbox. No spam.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-white/50 outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your email address"
+              className="flex-1 px-4 py-3 rounded-xl border-0 text-sm focus:ring-2 focus:ring-white/40 outline-none text-gray-800"
             />
-            <Button variant="secondary" className="px-8 py-3">
+            <Button
+              onClick={() => setEmail("")}
+              className="px-7 py-3 bg-white text-brand-primary hover:bg-brand-aqua hover:text-brand-navy font-semibold rounded-xl"
+            >
               Subscribe
             </Button>
           </div>
